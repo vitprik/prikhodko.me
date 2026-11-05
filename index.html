@@ -1,0 +1,380 @@
+<!doctype html>
+<html lang="ru" data-lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Виталий Приходько</title>
+<meta name="description" content="Основатель и CEO Botmother. Чат-боты, ИИ и автоматизации.">
+<meta name="color-scheme" content="light dark">
+
+<!-- Фавикон-монограмма «V» — inline-SVG, без отдельного файла и внешних запросов -->
+<link rel="icon" href="data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%2064%2064'%3E%3Crect%20width='64'%20height='64'%20rx='14'%20fill='%231a1a1a'/%3E%3Ctext%20x='32'%20y='45'%20font-family='Helvetica,Arial,sans-serif'%20font-size='42'%20font-weight='700'%20text-anchor='middle'%20fill='%23ffffff'%3EV%3C/text%3E%3C/svg%3E">
+
+<!-- Превью-карточка при отправке ссылки в мессенджерах и соцсетях -->
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://prikhodko.me">
+<meta property="og:title" content="Виталий Приходько">
+<meta property="og:description" content="Основатель и CEO Botmother. Чат-боты, ИИ и автоматизации.">
+<meta property="og:locale" content="ru_RU">
+<meta property="og:locale:alternate" content="en_US">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Виталий Приходько">
+<meta name="twitter:description" content="Основатель и CEO Botmother. Чат-боты, ИИ и автоматизации.">
+<!-- Язык по умолчанию берём из настроек браузера. Применяем в <head>, до отрисовки, чтобы не мигало. -->
+<script>
+  (function () {
+    var lang = (navigator.language || 'ru').slice(0, 2).toLowerCase() === 'ru' ? 'ru' : 'en';
+    document.documentElement.setAttribute('lang', lang);
+    document.documentElement.setAttribute('data-lang', lang);
+  })();
+</script>
+<style>
+  :root {
+    --bg: #ffffff;
+    --fg: #1a1a1a;
+    --muted: #6b6b6b;
+    --line: #e6e6e6;
+    --link: #1a1a1a;
+    --accent: #b0b0b0;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --bg: #121212;
+      --fg: #e8e8e8;
+      --muted: #8f8f8f;
+      --line: #2a2a2a;
+      --link: #e8e8e8;
+      --accent: #555555;
+    }
+  }
+
+  * { box-sizing: border-box; }
+  html { -webkit-text-size-adjust: 100%; }
+  body {
+    margin: 0;
+    background: var(--bg);
+    color: var(--fg);
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    font-size: 17px;
+    line-height: 1.6;
+    -webkit-font-smoothing: antialiased;
+    text-rendering: optimizeLegibility;
+  }
+
+  .wrap {
+    max-width: 34rem;
+    margin: 0 auto;
+    padding: 12vh 1.5rem 4rem;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+  }
+
+  /* Переключатель языка */
+  .lang {
+    position: fixed;
+    top: 1.1rem;
+    right: 1.25rem;
+    font-size: 0.82rem;
+    letter-spacing: 0.02em;
+  }
+  .lang button {
+    background: none;
+    border: none;
+    padding: 0.15rem 0.2rem;
+    margin: 0;
+    font: inherit;
+    color: var(--muted);
+    cursor: pointer;
+  }
+  .lang button[aria-pressed="true"] { color: var(--fg); }
+  .lang .sep { color: var(--accent); padding: 0 0.15rem; }
+
+  .photo {
+    width: 190px;
+    max-width: 55%;
+    aspect-ratio: 1 / 1;
+    border-radius: 20px;
+    margin: 0 0 1.7rem;
+    background-image: url("photo.jpg");
+    background-repeat: no-repeat;
+    background-size: 196%;
+    background-position: 62% 11%;
+    background-color: var(--line);
+  }
+
+  h1 {
+    font-size: 1.6rem;
+    font-weight: 600;
+    letter-spacing: -0.01em;
+    margin: 0 0 1.4rem;
+  }
+
+  p { margin: 0 0 1.05rem; }
+  .lead { color: var(--fg); }
+  .note { color: var(--muted); }
+
+  a {
+    color: var(--link);
+    text-decoration: none;
+    border-bottom: 1px solid var(--accent);
+    padding-bottom: 1px;
+  }
+  a:hover { border-bottom-color: var(--fg); }
+
+  .contacts {
+    margin-top: 1.6rem;
+    display: grid;
+    grid-template-columns: auto 1fr;
+    gap: 0.45rem 1.1rem;
+    align-items: baseline;
+  }
+  .contacts .label { color: var(--muted); }
+  .contacts a { justify-self: start; }
+
+  footer {
+    margin-top: auto;
+    padding-top: 3rem;
+    color: var(--muted);
+    font-size: 0.8rem;
+    line-height: 1.55;
+    border-top: 1px solid var(--line);
+  }
+  footer p { margin: 1.6rem 0 0; }
+  footer .legal { margin-top: 1.6rem; }
+
+  /* Свёрнутые платёжные реквизиты */
+  details.req { margin-top: 0.6rem; }
+  details.req summary {
+    cursor: pointer;
+    color: var(--muted);
+    list-style: none;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.4rem;
+    user-select: none;
+  }
+  details.req summary::-webkit-details-marker { display: none; }
+  details.req summary::before {
+    content: "+";
+    color: var(--accent);
+  }
+  details.req[open] summary::before { content: "\2013"; }
+  details.req summary:hover { color: var(--fg); }
+  details.req .req-hint {
+    margin: 0.85rem 0 0;
+    font-size: 0.75rem;
+    color: var(--muted);
+  }
+  details.req dl {
+    margin: 0.55rem 0 0;
+    display: grid;
+    grid-template-columns: auto 1fr;
+    gap: 0.35rem 1.1rem;
+  }
+  details.req dt { color: var(--muted); white-space: nowrap; }
+  details.req dd {
+    margin: 0;
+    color: var(--fg);
+    font-variant-numeric: tabular-nums;
+  }
+  /* Значения-реквизиты копируются по клику (класс навешивается скриптом) */
+  details.req dd.copyable {
+    cursor: pointer;
+    justify-self: start;
+    text-decoration: underline dotted var(--accent);
+    text-underline-offset: 3px;
+    transition: color .15s, text-decoration-color .15s;
+  }
+  details.req dd.copyable:hover,
+  details.req dd.copyable:focus-visible {
+    color: var(--fg);
+    text-decoration-color: var(--fg);
+    outline: none;
+  }
+  details.req dd.copied { color: var(--fg); text-decoration-color: var(--fg); }
+
+  /* Всплывающее подтверждение «Скопировано» */
+  .toast {
+    position: fixed;
+    left: 50%;
+    bottom: 1.4rem;
+    transform: translate(-50%, 0.5rem);
+    background: var(--fg);
+    color: var(--bg);
+    font-size: 0.8rem;
+    padding: 0.4rem 0.8rem;
+    border-radius: 0.5rem;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity .18s ease, transform .18s ease;
+    z-index: 10;
+  }
+  .toast.show { opacity: 1; transform: translate(-50%, 0); }
+
+  /* Показываем только активный язык */
+  html[data-lang="ru"] [data-l="en"] { display: none; }
+  html[data-lang="en"] [data-l="ru"] { display: none; }
+</style>
+</head>
+<body>
+
+<nav class="lang" aria-label="Language">
+  <button type="button" data-set="ru" aria-pressed="true">RU</button>
+  <span class="sep">/</span>
+  <button type="button" data-set="en" aria-pressed="false">EN</button>
+</nav>
+
+<main class="wrap">
+
+  <div class="photo" role="img" aria-label="Виталий Приходько"></div>
+
+  <h1>
+    <span data-l="ru">Виталий Приходько</span>
+    <span data-l="en">Vitaly Prikhodko</span>
+  </h1>
+
+  <div data-l="ru">
+    <p class="lead">Основатель и CEO <a href="https://botmother.com" target="_blank" rel="noopener">Botmother</a>.</p>
+    <p>Botmother — платформа, на которой без кода собирают чат-ботов для мессенджеров.</p>
+    <p class="note">Как ИП иногда беру отдельные задачи для компаний — чат-боты, ИИ, автоматизации.</p>
+  </div>
+
+  <div data-l="en">
+    <p class="lead">Founder and CEO of <a href="https://botmother.com" target="_blank" rel="noopener">Botmother</a>.</p>
+    <p>Botmother is a no-code platform for building chatbots for messengers.</p>
+    <p class="note">As a sole proprietor, I also take on projects for companies — chatbots, AI, automation.</p>
+  </div>
+
+  <div class="contacts">
+    <span class="label"><span data-l="ru">Почта</span><span data-l="en">Email</span></span>
+    <a href="mailto:v@prikhodko.me">v@prikhodko.me</a>
+
+    <span class="label">Telegram</span>
+    <a href="https://t.me/prikhodko" target="_blank" rel="noopener">@prikhodko</a>
+
+    <span class="label"><span data-l="ru">Telegram-канал</span><span data-l="en">Telegram channel</span></span>
+    <a href="https://t.me/joinchannel" target="_blank" rel="noopener">@joinchannel</a>
+  </div>
+
+  <footer>
+    <p data-l="ru">Сайт не использует куки и не собирает аналитику или какие-либо данные о посетителях.</p>
+    <p data-l="en">This site uses no cookies and collects no analytics or any data about visitors.</p>
+
+    <!-- Реквизиты ИП — только в русской версии -->
+    <p class="legal" data-l="ru">ИП Приходько Виталий Александрович</p>
+
+    <details class="req" data-l="ru">
+      <summary>Реквизиты</summary>
+      <p class="req-hint" hidden>Нажмите значение, чтобы скопировать</p>
+      <dl>
+        <dt>ИНН</dt><dd>463237451107</dd>
+        <dt>ОГРНИП</dt><dd>317463200000777</dd>
+        <dt>Банк</dt><dd>АО «ТБанк», г. Москва</dd>
+        <dt>Расчётный счёт</dt><dd>4080 2810 0000 0006 9057</dd>
+        <dt>Корр. счёт</dt><dd>3010 1810 1452 5000 0974</dd>
+        <dt>БИК</dt><dd>044525974</dd>
+        <dt>Валюта</dt><dd data-nocopy>российский рубль</dd>
+      </dl>
+    </details>
+  </footer>
+
+</main>
+
+<script>
+  (function () {
+    var buttons = document.querySelectorAll('.lang button');
+    function set(lang) {
+      document.documentElement.setAttribute('lang', lang);
+      document.documentElement.setAttribute('data-lang', lang);
+      buttons.forEach(function (b) {
+        b.setAttribute('aria-pressed', String(b.getAttribute('data-set') === lang));
+      });
+    }
+    // синхронизируем кнопки с языком, выбранным в <head>
+    set(document.documentElement.getAttribute('data-lang') || 'ru');
+    buttons.forEach(function (b) {
+      b.addEventListener('click', function () { set(b.getAttribute('data-set')); });
+    });
+  })();
+</script>
+
+<script>
+  // Копирование реквизитов по клику. Прогрессивное улучшение:
+  // без JS значения остаются обычным текстом.
+  (function () {
+    var dds = document.querySelectorAll('details.req dd');
+    if (!dds.length) return;
+
+    // Подсказку показываем только когда копирование реально работает (есть JS)
+    var hint = document.querySelector('.req-hint');
+    if (hint) hint.hidden = false;
+
+    var toast = document.createElement('div');
+    toast.className = 'toast';
+    toast.setAttribute('role', 'status');
+    toast.setAttribute('aria-live', 'polite');
+    toast.textContent = 'Скопировано';
+    document.body.appendChild(toast);
+
+    var toastTimer;
+    function showToast() {
+      toast.classList.add('show');
+      clearTimeout(toastTimer);
+      toastTimer = setTimeout(function () { toast.classList.remove('show'); }, 1100);
+    }
+
+    function copyText(text) {
+      if (navigator.clipboard && navigator.clipboard.writeText) {
+        return navigator.clipboard.writeText(text);
+      }
+      // Запасной путь для небезопасного контекста (например, file://)
+      return new Promise(function (resolve, reject) {
+        try {
+          var ta = document.createElement('textarea');
+          ta.value = text;
+          ta.setAttribute('readonly', '');
+          ta.style.position = 'fixed';
+          ta.style.left = '-9999px';
+          document.body.appendChild(ta);
+          ta.select();
+          var ok = document.execCommand('copy');
+          document.body.removeChild(ta);
+          ok ? resolve() : reject();
+        } catch (e) { reject(e); }
+      });
+    }
+
+    dds.forEach(function (dd) {
+      if (dd.hasAttribute('data-nocopy')) return; // напр. «Валюта» — не копируется
+      var raw = dd.textContent.trim();
+      // Числа со счётов копируем без пробелов, текст — как есть
+      var value = /^[\d\s]+$/.test(raw) ? raw.replace(/\s+/g, '') : raw;
+
+      dd.classList.add('copyable');
+      dd.setAttribute('role', 'button');
+      dd.setAttribute('tabindex', '0');
+      dd.setAttribute('title', 'Скопировать');
+      dd.setAttribute('aria-label', 'Скопировать: ' + value);
+
+      function fire() {
+        copyText(value).then(function () {
+          dd.classList.add('copied');
+          setTimeout(function () { dd.classList.remove('copied'); }, 900);
+          showToast();
+        }).catch(function () {});
+      }
+
+      dd.addEventListener('click', fire);
+      dd.addEventListener('keydown', function (e) {
+        if (e.key === 'Enter' || e.key === ' ' || e.key === 'Spacebar') {
+          e.preventDefault();
+          fire();
+        }
+      });
+    });
+  })();
+</script>
+
+</body>
+</html>
